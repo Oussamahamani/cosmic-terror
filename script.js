@@ -3,7 +3,7 @@
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
 const canvas_width = canvas.width = 1519.2;
-const canvas_height = canvas.height = 600;
+const canvas_height = canvas.height = 694.4;
 ctx.fillrect
 const playerImage = new Image();
 playerImage.src = 'ships/bleu.png';
@@ -25,8 +25,6 @@ const player = {
     dy: 0
   };
   
-
-
 
 function drawPlayer(){
     ctx.drawImage(playerImage,framex * spriteWidth, frameY* spriteHeight,spriteWidth,spriteHeight,player.x, player.y, player.w, player.h);
