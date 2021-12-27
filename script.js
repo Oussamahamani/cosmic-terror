@@ -6,10 +6,10 @@ const ctx = canvas.getContext('2d')
 const canvas_width = canvas.width = 1519.2;
 const canvas_height = canvas.height = 689;
 
-const playerImage = new Image();
-playerImage.src = 'ships/bleu.png';
 
 //player coding
+const playerImage = new Image();
+playerImage.src = 'ships/bleu.png';
 const spriteWidth = 192;
 const spriteHeight = 224;
 let framex = 0;
@@ -17,12 +17,12 @@ let frameY = 0;
 let gameFrame = 0;
 const staggerFrames = 5;
 let frametime = 100;
-counter = 1;
+counter = -1;
 
 
 const player = {
-    w: 100,
-    h: 100,
+    w: 75,
+    h: 75,
     x: 20,
     y: 200,
     speed: 5,
@@ -118,64 +118,142 @@ function moveUp() {
         player.dy = 0;
       }
     }
-    // enemey1
-    const enemyImage = new Image();
-    enemyImage.src= 'stone.png';
-const enemiesArray= [];
-    // const numberOfEnemies = 20
+
+    //enemies coding
+    const enemiesArray= [];
     let enemyframe= 0;
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+      return Math.floor(Math.random() * (max - min) + min); 
     }
     
     class Enemy{
-      constructor(image){
+      constructor(image,spriteWidth,spriteHeight,frames,slow,size,x){
         this.image= new Image();
         this.image.src= image;
-        this.x = Math.random() * canvas_width;
-        this.y = 0;
+        this.x =  x || Math.random() * canvas_width ;
+        this.y = -100;
         this.speed = getRandomInt(1,3)
-        this.spriteWidth = 320;
-        this.spriteHeight = 240;
-        this.width = this.spriteWidth /3;
-        this.height = this.spriteHeight/3;
+        this.spriteWidth = spriteWidth;
+        this.spriteHeight = spriteHeight;
+        this.width = this.spriteWidth *size;
+        this.height = this.spriteHeight* size;
         this.frame = 0;
-
+        this.frames = frames;
+        this.slow= slow
+        
       }
       update(){
         // this.x++;
         this.y += this.speed;
-        // if ( this.height +this.y  > canvas_height) this.y = 0;
-        if(enemyframe % 3 ===0 ){
-        this.frame > 23 ? this.frame =0 : this.frame++;
+
+        if(enemyframe % this.slow ===0 ){
+          this.frame > this.frames ? this.frame =0 : this.frame++;
         }
-        console.log(this.height)
       }
       draw(){
 
-        // ctx.fillRect(this.x,this.y,this.width,this.height)
-        ctx.drawImage(enemyImage,0,this.frame * this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.width,this.height)
-
+        ctx.drawImage(this.image,0,this.frame * this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.width,this.height)
+        
       }
     }
+//enemies classes
+    rock = {
+      image : 'objects/rock.png',
+      width : 320,
+      height : 240,
+      frames : 23,
+      slow : 3 ,
+      size : 0.3,
+      number:6,
+    }
+    octopus = {
+      image : 'objects/octopus.png',
+      width : 256,
+      height : 256,
+      frames : 6,
+      slow : 10 ,
+      size : 0.5,
+      number:6,
+    }
+    fireball = {
+      image : 'objects/fireball.png',
+      width : 586,
+      height : 716,
+      frames : 19,
+      slow : 3 ,
+      size : 0.25,
+      number:6,
+    }
+    fire = {
+      image : 'objects/fire.png',
+      width : 449,
+      height : 448,
+      frames : 8,
+      slow : 8,
+      size : 0.6,
+      number:6,
+    }
+    wing = {
+      image : 'objects/wing.png',
+      width : 207,
+      height : 165,
+      frames : 1,
+      slow : 16,
+      size : 0.8,
+      number:6,
+    }
+    eyes = {
+      image : 'objects/eyes.png',
+      width : 320,
+      height : 320,
+      frames : 150,
+      slow : 1,
+      size : 0.6,
+      number:3,
+    }
+    boss = {
+      image : 'ships/boss.png',
+      width : 528,
+      height : 358,
+      frames : 2,
+      slow : 1,
+      size : 1,
+      number:1,
+    }
+    alien = {
+      image : 'ships/alien.png',
+      width : 400,
+      height : 400,
+      frames : 33,
+      slow : 6,
+      size : 0.5,
+      number:6,
+    }
+    bob = {
+      image : 'ships/bob.png',
+      width : 400,
+      height : 400,
+      frames : 23,
+      slow : 6,
+      size : 0.3,
+      number:3,
+    }
+    
+//enemies function
 
-    // numberOfEnemies= getRandomInt(1,20)   
 
-setInterval(() =>{
- 
-  for (let i = 0;i < 7 ;i++ ){
-    enemiesArray.push(new Enemy('stone.png'));
-  }
-},1000)
+// game function and levels
+    setInterval(() =>{
 
-// setInterval(() =>{
-//   enemiesArray.splice(0,10)
-//   console.log('hello' + enemiesArray.length)
-// },1000)
-  
-  
+      for (let i = 0;i < bob.number ;i++ ){
+        enemiesArray.push(new Enemy(bob.image,bob.width,bob.height,bob.frames,bob.slow,bob.size)); 
+        // how it works ('objects/x.png',width,heigh,frames,slow,size,x,y)
+        
+      }
+      
+    },1000)
 function spawn(){
   enemiesArray.forEach(enemy =>{
     enemy.update();
@@ -184,21 +262,27 @@ function spawn(){
   })
 
 }
+function score(){
+  ctx.fillStyle = "white";
+  ctx.font = "25px arial";
+  ctx.fillText('Your Score is: '+ counter, 10,40)
+}
+
+
+  // main function
   function update() {
-    clear();
-    
+    clear(); 
     drawPlayer();
     newPos();
-   
+   score()
     spawn()
   
     enemyframe++;
     requestAnimationFrame(update);
-    // console.log(enemiesArray)
-    // console.log(counter)
+
 }
 
-
+//story pop up
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
@@ -215,4 +299,7 @@ update()
 // document.querySelector("#close").addEventListener("click", function(){
 //   document.querySelector(".popup").style.display = "none";update()
 // });
+
+
+
 
