@@ -14,9 +14,7 @@ body {
   width: 200px;
 }
 
-#canvas1 {
 
-}
 *,
 *:before,
 *:after{
@@ -24,9 +22,8 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    background-color: #0f72e5;
-}
+
+
 .popup{
     background-color: #ffffff;
     width: 800px;

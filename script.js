@@ -113,35 +113,106 @@ function moveUp() {
       e.key == 'ArrowUp' ||
       e.key == 'Down' ||
       e.key == 'ArrowDown'
-    ) {
-      player.dx = 0;
-      player.dy = 0;
+      ) {
+        player.dx = 0;
+        player.dy = 0;
+      }
     }
-  }
-
-  function update() {
+    // enemey1
+    const enemyImage = new Image();
+    enemyImage.src= 'stone.png';
+const enemiesArray= [];
+    // const numberOfEnemies = 20
+    let enemyframe= 0;
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    }
     
-    clear()
-    drawPlayer()
-    newPos()
-    console.log(counter)
+    class Enemy{
+      constructor(image){
+        this.image= new Image();
+        this.image.src= image;
+        this.x = Math.random() * canvas_width;
+        this.y = 0;
+        this.speed = getRandomInt(1,3)
+        this.spriteWidth = 320;
+        this.spriteHeight = 240;
+        this.width = this.spriteWidth /3;
+        this.height = this.spriteHeight/3;
+        this.frame = 0;
+
+      }
+      update(){
+        // this.x++;
+        this.y += this.speed;
+        // if ( this.height +this.y  > canvas_height) this.y = 0;
+        if(enemyframe % 3 ===0 ){
+        this.frame > 23 ? this.frame =0 : this.frame++;
+        }
+        console.log(this.height)
+      }
+      draw(){
+
+        // ctx.fillRect(this.x,this.y,this.width,this.height)
+        ctx.drawImage(enemyImage,0,this.frame * this.spriteHeight,this.spriteWidth,this.spriteHeight,this.x,this.y,this.width,this.height)
+
+      }
+    }
+
+    // numberOfEnemies= getRandomInt(1,20)   
+
+setInterval(() =>{
+ 
+  for (let i = 0;i < 7 ;i++ ){
+    enemiesArray.push(new Enemy('stone.png'));
+  }
+},1000)
+
+// setInterval(() =>{
+//   enemiesArray.splice(0,10)
+//   console.log('hello' + enemiesArray.length)
+// },1000)
+  
+  
+function spawn(){
+  enemiesArray.forEach(enemy =>{
+    enemy.update();
+    enemy.draw();
+    if (enemiesArray[0].y> canvas_height){ enemiesArray.shift()}
+  })
+
+}
+  function update() {
+    clear();
+    
+    drawPlayer();
+    newPos();
+   
+    spawn()
+  
+    enemyframe++;
     requestAnimationFrame(update);
+    // console.log(enemiesArray)
+    // console.log(counter)
 }
 
 
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
+update()
 
+// window.addEventListener("load", function(){
+//   setTimeout(
+//       function open(event){
+//           document.querySelector(".popup").style.display = "block";
+//       },
+//       1000
+//   )
+// });
+// document.querySelector("#close").addEventListener("click", function(){
+//   document.querySelector(".popup").style.display = "none";update()
+// });
 
-window.addEventListener("load", function(){
-  setTimeout(
-      function open(event){
-          document.querySelector(".popup").style.display = "block";
-      },
-      1000
-  )
-});
-document.querySelector("#close").addEventListener("click", function(){
-  document.querySelector(".popup").style.display = "none";update()
-});
