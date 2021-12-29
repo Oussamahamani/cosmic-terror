@@ -19,7 +19,7 @@ let frameY = 0;
 let gameFrame = 0;
 const staggerFrames = 5;
 let frametime = 100;
-counter = 100;
+counter = 0;
 
 
 const player = {
@@ -421,7 +421,7 @@ if(player.x +10> laser.x + laser.width ||
 ///nothing happend if the you didn t touch anything
   }
   //but if you touch
-  else {if (lives <=0) alert('you have lost')
+  else {if (lives <=0) alert('you have lost, reload the page to play again')
   else {lasers.splice(index,1); lives--}
       }
 })
@@ -434,7 +434,19 @@ if(player.x +10> laser.x + laser.width ||
             beam.draw();
         
             //working code
-            if(beam.x > enemy.x + enemy.width ||
+            if (enemy.name === 'fireball'){
+              if  (beam.x > enemy.x + enemy.width ||
+                //right
+                beam.x + beam.w < enemy.x  ||
+                //down
+                beam.y  > enemy.y + enemy.height ||
+            //up
+                beam.y + beam.h< enemy.y){
+                }
+                //but if you touch
+               
+            }else
+           if  (beam.x > enemy.x + enemy.width ||
                 //right
                 beam.x + beam.w < enemy.x  ||
                 //down
@@ -467,7 +479,7 @@ if(player.x +10> laser.x + laser.width ||
 ///nothing happend if the you didn t touch anything
         }
         //but if you touch
-        else {if (lives <=0) alert('you have lost')
+        else {if (lives <=0) alert('you have lost, reload the page to play again')
         else {enemiesArray.splice(index,1); lives--}
             }
 
@@ -485,7 +497,7 @@ if(player.x +10> laser.x + laser.width ||
 }
 //but if you touch
 else {
-  if (lives <=0) alert('you have lost') //either you lose
+  if (lives <=0) alert('you have lost, reload the page to play again') //either you lose
   else {enemiesArray.splice(index,1); lives--} //you lose a life
     }
   
@@ -502,7 +514,7 @@ else {
 }
 //but if you touch
 else {
-  if (lives <=0) alert('you have lost') //either you lose
+  if (lives <=0) alert('you have lost, reload the page to play again') //either you lose
   else {; lives= (lives -0.1)} //you lose a life
     }
   }
@@ -519,7 +531,7 @@ else {
 }
 //but if you touch
 else {
-  if (lives <=0) alert('you have lost') //either you lose
+  if (lives <=0) alert('you have lost, reload the page to play again') //either you lose
   else {enemiesArray.splice(index,1); lives--} //you lose a life
     }
   }
