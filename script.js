@@ -19,7 +19,7 @@ let frameY = 0;
 let gameFrame = 0;
 const staggerFrames = 5;
 let frametime = 100;
-counter = 0;
+counter = 100;
 
 
 const player = {
@@ -95,6 +95,19 @@ function moveLeft() {
 
 
 function keyDown(e) {
+  if (  counter > 70  && counter < 100   ){
+    if (e.key === 'ArrowLeft' || e.key === 'Left') {
+      moveRight();
+    } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+      moveLeft();
+    } else if (e.key === 'ArrowDown' || e.key === 'Down') {
+      moveUp();
+    } else if (e.key === 'ArrowUp' || e.key === 'Up') {
+      moveDown();
+    } else if (e.key === 81 || e.key === 'q'){
+      destroy()
+    }
+  }else{
   if (e.key === 'ArrowRight' || e.key === 'Right') {
     moveRight();
   } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
@@ -106,6 +119,7 @@ function keyDown(e) {
   } else if (e.key === 81 || e.key === 'q'){
     destroy()
   }
+}
 }
 
 function keyUp(e) {
@@ -283,10 +297,31 @@ bob = {
     number: 3,
     name:'bob'
 }
+human = {
+    image: 'objects/human.png',
+    width: 300,
+    height: 300,
+    frames: 5,
+    slow: 1,
+    size: 0.5,
+    number: 3,
+    name:'bob'
+}
+laser = {
+    image: 'objects/laser.png',
+    width: 400,
+    height: 400,
+    frames: 1,
+    slow: 6,
+    size: 0.15,
+    number: 3,
+    name:'bob',
+    speed: 3,
+}
 
 
 const beams = [];
-
+const lasers = [];
 //enemies function
 
 
@@ -308,6 +343,14 @@ function wave(object,number){
 }
 //levels and the order of the objects showing
 setInterval(() => {
+  enemiesArray.forEach((enemy,index)=> {
+    if (enemy.name === 'bob'){
+      console.log(lasers.length)
+      if (lasers.length<800){
+       lasers.push(new Enemy(laser.image, laser.width, laser.height, laser.frames, laser.slow, laser.size, laser.name,enemy.x,enemy.y,laser.speed))
+      }else {return}
+    } 
+   })
   if (counter === 10 ){ gun = gun+1}
   else if (counter === 20 ){ gun = gun+1}
   else if (counter === 40 ){ gun = gun+1}
@@ -315,13 +358,14 @@ setInterval(() => {
   else if  (counter === 100 ){ gun = gun+1}
   else if  (counter === 120 ){ gun = gun+1}
   else if  (counter === 140 ){ gun = gun+1}
+  else if  (counter === 160 ){ gun = gun+1}
   else if  (counter === 180 ){ gun = gun+1}
   else if  (counter === 200 ){ gun = gun+1}
 
-  if ( counter < 10){ wave(rock,4) }
-  else if ( counter > 10 && counter < 25 ){  wave(rock,11) }
+  if ( counter < 10){ wave(rock,3) }
+  else if ( counter > 10 && counter < 25 ){  wave(rock,7) }
   else if (  counter > 20  && counter < 40  ) {  wave(fireball,1) }
-  else if (  counter > 40  && counter < 70  ) {  wave(alien,6); document.body.style.backgroundImage = "url('pictures/2.gif') " }
+  else if (  counter > 40  && counter < 70  ) {  wave(alien,5); document.body.style.backgroundImage = "url('pictures/2.gif') " }
   else if (  counter > 70  && counter < 100  ) {  wave(octopus,6); document.body.style.backgroundImage = "url('pictures/invert.gif') " }
   else if (  counter > 100  && counter < 120  ) {  wave(bob,4); document.body.style.backgroundImage = "url('pictures/background.gif') " }
   else if (counter > 120 && counter < 140) {  wave(bob,5);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '48%'; }
@@ -356,11 +400,31 @@ setInterval(() => {
 
 
 // }
-var lives = 5
+var lives = 20
 //spawn and detection
 function spawn() {
 
 
+
+lasers.forEach((laser,index)=> {
+laser.update()
+laser.draw()
+
+
+if(player.x +10> laser.x + laser.width ||
+  //right
+  player.x + player.w < laser.x +10 ||
+  //down
+  player.y +30> laser.y + laser.height ||
+//up
+  player.y -5 + player.h< laser.y){
+///nothing happend if the you didn t touch anything
+  }
+  //but if you touch
+  else {if (lives <=0) alert('you have lost')
+  else {lasers.splice(index,1); lives--}
+      }
+})
     
     enemiesArray.forEach((enemy,index) => {
         enemy.update();
@@ -386,8 +450,10 @@ function spawn() {
     
     if (enemiesArray[0].y > canvas_height) { enemiesArray.shift() }
     if (beams[0]) { if (beams[0].y < 0) { beams.shift() }}
+    if (lasers[0]) { if (lasers[0].y > canvas_height) { lasers.shift() }}
+
   
-            
+
 
     if (enemy.name === 'bob' ){
 
@@ -425,13 +491,13 @@ else {
   
     } else if (enemy.name === 'fireball') {
     //right
-    if(player.x +75  > enemy.x + enemy.width ||
+    if(player.x +200  > enemy.x + enemy.width ||
     //left
-    player.x + player.w < enemy.x +60 ||
+    player.x + player.w < enemy.x +200 ||
     //down
-    player.y +70> enemy.y + enemy.height ||
+    player.y +200> enemy.y + enemy.height ||
     //up
-    player.y -60 + player.h< enemy.y){
+    player.y  + player.h< enemy.y +200){
 ///nothing happend if the you didn t touch anything
 }
 //but if you touch
@@ -460,9 +526,7 @@ else {
 })
 
 }
-    for (let i =0 ; i< enemiesArray.length;i++){
 
-}
 function score() {
   ctx.fillStyle = "white";
   ctx.font = "25px arial";
@@ -480,6 +544,7 @@ function update() {
   newPos();
   score()
   spawn()
+
 ///earth   ctx.drawImage(earth, 600, 250, (488/3), (511/3));
 
   document.body.onkeyup = function(e){
