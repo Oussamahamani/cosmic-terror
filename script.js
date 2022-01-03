@@ -541,7 +541,7 @@ const lasers = [];
                 }
                 
                 let gameFrame = 0;
-                counter = 248;
+                counter = 0;
                 let gun = 4
                 var lives = 19
                 function score() {
@@ -608,7 +608,7 @@ function gameover(){
 counter = -1000;enemiesArray.length = 0; beams.length = 0; lasers.length = 0;
   document.querySelector("#restart").addEventListener("click", function(){
     document.querySelector("#gameover > .popup").style.display = "none";
-    counter= 0; gun = 3 ; lives = 19; gameFrame = 0; 
+    counter= 0; gun = 3 ; lives = 19; gameFrame = 0; lives++;
 
 })
 }
