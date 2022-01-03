@@ -12,13 +12,15 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com"> 
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 	
-	<a href="game.html"> <button>Start The journey</button> </a>
+	<a href="game.html" id='mode'> <button>Start The journey</button> </a>
+	<!-- <a href="game.html" > <button>Survival Mode</button> </a> -->
 	<audio autoplay loop> 
 		<source src="objects/start.mp3" type="audio/mpeg">
 	</audio>
  <style>
   body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -28,7 +30,9 @@
    background-size:cover;
 }
 
-
+#mode{
+  /* margin-bottom: 100px; */
+}
 
 button, button::after {
   width: 380px;
