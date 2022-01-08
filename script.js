@@ -543,7 +543,7 @@ const lasers = [];
                 let gameFrame = 0;
                 counter = 0;
                 let gun = 4
-                var lives = 100
+                var lives = 200
                 function score() {
                   if (counter > 240){ ctx.fillStyle = "black";}else{
                   ctx.fillStyle = "white";}
@@ -608,7 +608,7 @@ function gameover(){
 counter = -1000;enemiesArray.length = 0; beams.length = 0; lasers.length = 0;
   document.querySelector("#restart").addEventListener("click", function(){
     document.querySelector("#gameover > .popup").style.display = "none";
-    counter= 0; gun = 3 ; lives = 100; gameFrame = 0; lives++;
+    counter= 0; gun = 3 ; lives = 200; gameFrame = 0; lives++;
 
 })
 }
