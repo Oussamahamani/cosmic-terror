@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
- <img src="https://github.com/Oussamahamani/cosmic-terror/blob/main/pictures/alien.gif" alt="iconalien" width="500">
+ <img src="https://github.com/Oussamahamani/cosmic-terror/blob/main/pictures/alien.gif" alt="iconalien" width="250">
   <br>
   Game: CosmicTerror
   <br>
@@ -30,7 +30,7 @@ This game used the following tutorials:
 
 - Space survival shooting action game where you have to evade meteors and other enemies, and use your shots wisely to survive.
 
-- This project is using Html, Css, Javascript, Dom and Canvas.
+- This project is build using Html, Css, Javascript, Dom and Canvas.
 
 
 
