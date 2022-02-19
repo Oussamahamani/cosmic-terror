@@ -20,7 +20,7 @@ Start the battle [Here](https://cosmicterror.netlify.app/)
   <a href="#Story">Story</a> •
   <a href="#key-features">Key Features</a> 
    <br>
-<video width="100%" src="https://imgur.com/aJmyvo7" >
+<img width="100%" src="https://github.com/Oussamahamani/cosmic-terror/blob/main/pictures/gif.gif" >
 </p>
 
 
