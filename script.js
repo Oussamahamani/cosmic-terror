@@ -1,8 +1,24 @@
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
 
-const canvas_width = canvas.width = 1519.2;
-const canvas_height = canvas.height = 689;
+
+const canvas_width = canvas.width = window.innerWidth;
+const canvas_height = canvas.height = window.innerHeight;
+
+
+///game pop and game start
+window.addEventListener("load", function(){
+  setTimeout(
+      function open(event){
+          document.querySelector(".popup").style.display = "block";
+          
+      },
+      500
+  )
+});
+document.querySelector("#close").addEventListener("click", function(){
+  document.querySelector(".popup").style.display = "none";update()
+});
 
 
 //player coding
@@ -367,10 +383,10 @@ const lasers = [];
     else if (  counter > 40  && counter < 70  ) {  wave(alien,5); document.body.style.backgroundImage = "url('pictures/2.gif') " }
     else if (  counter > 70  && counter < 100  ) {  wave(octopus,6); document.body.style.backgroundImage = "url('pictures/invert.gif') " }
     else if (  counter > 100  && counter < 120  ) {  wave(bob,4); document.body.style.backgroundImage = "url('pictures/background.gif') " }
-    else if (counter > 120 && counter < 140) {  wave(bob,5);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '48%'; }
-    else if (counter > 140 && counter < 160) {  wave(bob,6);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '35%'; }
-    else if (counter > 160 && counter < 180) {  wave(bob,7);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '15%'; }
-    else if (counter > 180 && counter < 200) {  wave(bob,8);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '1%'; }
+    else if (counter > 120 && counter < 140) {  wave(bob,4);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '48%'; }
+    else if (counter > 140 && counter < 160) {  wave(bob,5);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '35%'; }
+    else if (counter > 160 && counter < 180) {  wave(bob,6);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '15%'; }
+    else if (counter > 180 && counter < 200) {  wave(bob,7);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '1%'; }
     else if (  counter > 200  && counter < 240  ) {  wave(eyes,2); document.body.style.backgroundImage = "url('pictures/satic2.gif')";document.body.style.backgroundRepeat = 'no-repeat';document.body.style.backgroundSize = 'cover'; gameFrame = getRandomInt(-5000000, 10000000) }
     else if  (counter > 240 && counter < 250){ document.body.style.backgroundImage = "url('pictures/satic1.gif')"; gameFrame = getRandomInt(-5000000, 10000000)}
     else if  (counter > 250){if(fixing){transmittion()};gameFrame = getRandomInt(-5000000, 10000000)}
@@ -543,7 +559,7 @@ const lasers = [];
                 let gameFrame = 0;
                 counter = 0;
                 let gun = 4
-                var lives = 200
+                var lives = 29
                 function score() {
                   if (counter > 240){ ctx.fillStyle = "black";}else{
                   ctx.fillStyle = "white";}
@@ -588,18 +604,6 @@ const lasers = [];
 
 
 
-window.addEventListener("load", function(){
-  setTimeout(
-      function open(event){
-          document.querySelector(".popup").style.display = "block";
-          
-      },
-      500
-  )
-});
-document.querySelector("#close").addEventListener("click", function(){
-  document.querySelector(".popup").style.display = "none";update()
-});
 
 
 function gameover(){
@@ -611,6 +615,7 @@ counter = -1000;enemiesArray.length = 0; beams.length = 0; lasers.length = 0;
     counter= 0; gun = 3 ; lives = 200; gameFrame = 0; lives++;
 
 })
+
 }
 function transmittion(){
   document.querySelector("#transmittion > .popup").style.display = "block";
