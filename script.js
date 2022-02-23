@@ -590,7 +590,7 @@ const lasers = [];
       })
       
     }}
-    if(enemiesArray.length <=1 && counter >10 && counter < 243){enemiesArray.push(new Enemy(alien.image, alien.width, alien.height, alien.frames, alien.slow, alien.size, alien.name,alien.x,alien.y))}
+    if(enemiesArray.length <=1 && counter >2 && counter < 243){enemiesArray.push(new Enemy(alien.image, alien.width, alien.height, alien.frames, alien.slow, alien.size, alien.name,alien.x,alien.y))}
 
     enemyframe++;
    requestAnimationFrame(update);
