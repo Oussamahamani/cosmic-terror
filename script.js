@@ -377,19 +377,19 @@ const lasers = [];
     else if  (counter === 200 ){ gun = gun+1}
     //levels
     if (counter <=0){}
-    else if ( counter < 10 &&counter> 0){ wave(rock,3); document.body.style.backgroundImage = "url('pictures/background.gif')";document.body.style.backgroundRepeat = 'no-repeat';document.body.style.backgroundSize = 'cover'; }
-    else if ( counter > 10 && counter < 25 ){  wave(rock,7) }
-    else if (  counter > 20  && counter < 40  ) {  wave(fireball,1) }
-    else if (  counter > 40  && counter < 70  ) {  wave(alien,5); document.body.style.backgroundImage = "url('pictures/2.gif') " }
-    else if (  counter > 70  && counter < 100  ) {  wave(octopus,6); document.body.style.backgroundImage = "url('pictures/invert.gif') " }
-    else if (  counter > 100  && counter < 120  ) {  wave(bob,4); document.body.style.backgroundImage = "url('pictures/background.gif') " }
-    else if (counter > 120 && counter < 140) {  wave(bob,4);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '48%'; }
-    else if (counter > 140 && counter < 160) {  wave(bob,5);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '35%'; }
-    else if (counter > 160 && counter < 180) {  wave(bob,6);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '15%'; }
-    else if (counter > 180 && counter < 200) {  wave(bob,7);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '1%'; }
-    else if (  counter > 200  && counter < 240  ) {  wave(eyes,2); document.body.style.backgroundImage = "url('pictures/satic2.gif')";document.body.style.backgroundRepeat = 'no-repeat';document.body.style.backgroundSize = 'cover'; gameFrame = getRandomInt(-5000000, 10000000) }
-    else if  (counter > 240 && counter < 250){ document.body.style.backgroundImage = "url('pictures/satic1.gif')"; gameFrame = getRandomInt(-5000000, 10000000)}
-    else if  (counter > 250){if(fixing){transmittion()};gameFrame = getRandomInt(-5000000, 10000000)}
+    else if ( counter < 5 &&counter> 0){ wave(rock,3); document.body.style.backgroundImage = "url('pictures/background.gif')";document.body.style.backgroundRepeat = 'no-repeat';document.body.style.backgroundSize = 'cover'; }
+    else if ( counter > 5 && counter < 10 ){  wave(rock,7) }
+    else if (  counter > 10  && counter < 20  ) {  wave(fireball,1) }
+    else if (  counter > 20  && counter < 35  ) {  wave(alien,5); document.body.style.backgroundImage = "url('pictures/2.gif') " }
+    else if (  counter > 35  && counter < 50  ) {  wave(octopus,6); document.body.style.backgroundImage = "url('pictures/invert.gif') " }
+    else if (  counter > 50  && counter < 60  ) {  wave(bob,4); document.body.style.backgroundImage = "url('pictures/background.gif') " }
+    else if (counter > 60 && counter < 70) {  wave(bob,4);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '48%'; }
+    else if (counter > 70 && counter < 80) {  wave(bob,5);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '35%'; }
+    else if (counter > 80 && counter < 90) {  wave(bob,6);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '15%'; }
+    else if (counter > 90 && counter < 100) {  wave(bob,7);document.body.style.backgroundRepeat = 'inherit';document.body.style.backgroundSize = '1%'; }
+    else if (  counter > 100  && counter < 120  ) {  wave(eyes,2); document.body.style.backgroundImage = "url('pictures/satic2.gif')";document.body.style.backgroundRepeat = 'no-repeat';document.body.style.backgroundSize = 'cover'; gameFrame = getRandomInt(-5000000, 10000000) }
+    else if  (counter > 120 && counter < 130){ document.body.style.backgroundImage = "url('pictures/satic1.gif')"; gameFrame = getRandomInt(-5000000, 10000000)}
+    else if  (counter > 130){if(fixing){transmittion()};gameFrame = getRandomInt(-5000000, 10000000)}
     
     //last game popup
     
@@ -559,7 +559,7 @@ const lasers = [];
                 let gameFrame = 0;
                 counter = 0;
                 let gun = 4
-                var lives = 2000000000
+                var lives = 50
                 function score() {
                   if (counter > 240){ ctx.fillStyle = "black";}else{
                   ctx.fillStyle = "white";}
