@@ -559,7 +559,7 @@ const lasers = [];
                 let gameFrame = 0;
                 counter = 0;
                 let gun = 4
-                var lives = 10000
+                var lives = 39
                 function score() {
                   if (counter > 240){ ctx.fillStyle = "black";}else{
                   ctx.fillStyle = "white";}
